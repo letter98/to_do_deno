@@ -1,4 +1,4 @@
-import client from '../connectDb.ts';
+import client from '../database/connectDb.ts';
 
 interface Key {
     id?: any
@@ -20,7 +20,7 @@ export async function search(params:Key = {}) {
 }
 
 export async function update(fullname: string, password: string, id: number) {
-    return await client.execute(`UPDATE card SET fullname= ?, password= ? WHERE account_id = ?`, [
+    return await client.execute(`UPDATE account SET fullname= ?, password= ? WHERE account_id = ?`, [
         fullname, password, id
     ]);
 }

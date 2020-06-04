@@ -1,4 +1,4 @@
-import client from '../connectDb.ts';
+import client from '../database/connectDb.ts';
 
 interface Key {
     id?: any

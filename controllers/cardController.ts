@@ -1,4 +1,4 @@
-import { search, insert } from '../models/card.ts'
+import { search, insert, update, remove } from '../models/card.ts'
 import { cardInterface } from '../models/cardInterface.ts'
 
 export async function getCard ({ params, response }: { params: any; response: any }) {
@@ -19,4 +19,18 @@ export async function addCard ({ request, response }: { request: any; response: 
     }
 
     response.status = status;
+}
+
+export async function updateCard ({ request, response, params }: { request: any; response: any; params: any }) {
+  const body = await request.body();
+  let responseMessage = {};
+  const cardInfo: cardInterface = body.value; 
+  responseMessage = await update( cardInfo.title, cardInfo.description, cardInfo.finished, params.id);
+  response.body = responseMessage;
+}
+
+export async function deleteCard ({ params, response }: { params: any; response: any }) {
+  let responseMessage = {};
+  responseMessage = await remove(params.id);
+  response.body = responseMessage;
 }
