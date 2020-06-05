@@ -1,6 +1,8 @@
 import { Router } from 'https://deno.land/x/oak/mod.ts'
 import { getCard, addCard, updateCard, deleteCard  } from './controllers/cardController.ts'
 import { getAccount, addAccount, updateAccount, deleteAccount } from './controllers/accountController.ts'
+import { createToken, validateToken } from './middlewares/authenticate.ts'
+
 //import controller
 
 const router = new Router();
@@ -17,4 +19,7 @@ router.post('/account/add', addAccount);
 router.put('/account/update/:id', updateAccount);
 router.delete('/account/delete/:id', deleteAccount);
 
+//test token
+router.get('/token/get', createToken);
+router.get('/token/check', validateToken);
 export default router;
